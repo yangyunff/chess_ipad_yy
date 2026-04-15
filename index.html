@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>iPad Chess Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Local-first Chess Prototype</p>
+        <h1>国际象棋应用原型</h1>
+        <p class="hero-copy">
+          先在本机直接测试，后续可平滑迁移到 iPad。支持人人对战、人机对战和 3 档 AI 难度。
+        </p>
+      </div>
+      <div class="hero-chip" id="turn-chip">白方回合</div>
+    </header>
+
+    <main class="layout">
+      <section class="board-panel">
+        <div class="board-frame">
+          <div class="board-header">
+            <span>棋盘</span>
+            <span id="status-pill" class="status-pill">对局进行中</span>
+          </div>
+          <div id="board" class="board" aria-label="国际象棋棋盘"></div>
+          <div class="board-footer">
+            <span id="selection-hint">点击棋子开始移动</span>
+            <span id="last-move">最近一步：暂无</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="card controls-card">
+          <h2>对局设置</h2>
+
+          <label class="field">
+            <span>模式</span>
+            <select id="mode-select">
+              <option value="ai">人机对战</option>
+              <option value="human">人人对战</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>难度</span>
+            <select id="difficulty-select">
+              <option value="easy">初级</option>
+              <option value="medium" selected>中级</option>
+              <option value="hard">高级</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>我方执子</span>
+            <select id="player-color-select">
+              <option value="w" selected>白方</option>
+              <option value="b">黑方</option>
+            </select>
+          </label>
+
+          <div class="button-row">
+            <button id="restart-btn" class="primary-btn" type="button">重新开始</button>
+            <button id="undo-btn" class="ghost-btn" type="button">悔棋</button>
+          </div>
+        </section>
+
+        <section class="card info-card">
+          <h2>当前局面</h2>
+          <div class="facts">
+            <div class="fact">
+              <span class="fact-label">回合</span>
+              <strong id="turn-text">白方</strong>
+            </div>
+            <div class="fact">
+              <span class="fact-label">模式说明</span>
+              <strong id="mode-text">人机对战</strong>
+            </div>
+            <div class="fact">
+              <span class="fact-label">AI 状态</span>
+              <strong id="ai-text">待命</strong>
+            </div>
+          </div>
+          <p id="game-message" class="game-message">
+            选择一个棋子后，系统会高亮它的合法走法。
+          </p>
+        </section>
+
+        <section class="card moves-card">
+          <h2>步法记录</h2>
+          <ol id="move-list" class="move-list"></ol>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <div id="promotion-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <p>兵升变为：</p>
+      <div class="promotion-options">
+        <button type="button" data-piece="q">后</button>
+        <button type="button" data-piece="r">车</button>
+        <button type="button" data-piece="b">象</button>
+        <button type="button" data-piece="n">马</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

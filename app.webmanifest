@@ -1,0 +1,17 @@
+{
+  "name": "童趣国际象棋",
+  "short_name": "国际象棋",
+  "start_url": "./ipad.html",
+  "display": "standalone",
+  "background_color": "#eef5f1",
+  "theme_color": "#dbe9df",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
